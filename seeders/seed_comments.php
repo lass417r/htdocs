@@ -4,7 +4,7 @@ require_once __DIR__ . '/../_.php';
 try {
 
   $db = _db();
-  $q = $db->prepare('DROP TABLE IF EXISTS users');
+  $q = $db->prepare('DROP TABLE IF EXISTS comments');
   $q->execute();
 
   $q = $db->prepare('
@@ -13,8 +13,7 @@ try {
       fk_order_id       bigint(20),
       created_at        timestamp,
       name              varchar(20),
-      comment           varchar(140),
-      PRIMARY KEY (comment_id),
+      comment           varchar(140)
     )
   ');
   $q->execute();

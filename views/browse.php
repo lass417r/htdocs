@@ -30,6 +30,8 @@ require_once __DIR__ . '/_header.php';
     <div id="results" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
   </div>
 </div>
-
+<?php global $nonce;
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/browse.js"></script>
+<?php endif; ?>
 <?php require_once __DIR__ . '/_footer.php'; ?>
-<script src="../js/browse.js"></script>

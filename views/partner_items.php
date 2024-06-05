@@ -23,7 +23,7 @@ $items = $q->fetchAll();
         <div class="font-bold">
           <h2>Add a new product</h2>
         </div>
-        <form onsubmit="validate(add_item); return false" class="flex flex-col gap-6 w-full h-full pt-4">
+        <form id="partner_add_item_form" class="flex flex-col gap-6 w-full h-full pt-4">
           <label for="add_item_name">
             <input type="text" name="add_item_name" placeholder="Item Name" required data-validate="str" data-min="2" data-max="60">
           </label>
@@ -38,13 +38,13 @@ $items = $q->fetchAll();
         <div class="font-bold">
           <h2>Update a product</h2>
         </div>
-        <form onsubmit="validate(update_item); return false" class="flex flex-col gap-6 w-full h-full pt-4">
+        <form id="partner_update_item_form" class="flex flex-col gap-6 w-full h-full pt-4">
           <label class="hidden" for="item_id">
             <input class="" type="text" name="item_id" value="">
           </label>
           <!-- ... -->
           <label for="item_id">
-            <select id="itemSelect" class="w-full" name="item_id" required data-validate="str" data-min="1" data-max="60" onchange="load_item()">
+            <select id="itemSelect" class="w-full" name="item_id" required data-validate="str" data-min="1" data-max="60">
               <option hidden>Select a product</option>
               <?php foreach ($items as $item) : ?>
                 <option value="<?= $item['item_id'] ?>" data-name="<?= $item['item_name'] ?>"><?= $item['item_name'] ?></option>
@@ -87,13 +87,13 @@ $items = $q->fetchAll();
             <p class="text-lg"><?= $item['item_name'] ?></p>
             <p class="text-lg"><?= $item['item_price'] ?></p>
             <div id="options" class="flex align-between justify-end gap-2">
-              <form onsubmit="private_item(event); return false;">
+              <form id="partner_hide_item_form">
                 <input type="text" name="item_id" class="hidden" value="<?= $item['item_id'] ?>">
                 <input type="hidden" name="private_status" value="<?= $item['item_private'] ? 0 : 1 ?>">
                 <button id="toggleButton-<?= $item['item_id'] ?>" class="float-right hover:cursor-pointer" type="submit">
                 </button>
               </form>
-              <form onsubmit=" if(confirm('You are about to permanently deleted this product from our system. Do you want to continue?')) {delete_item() ;} return false;">
+              <form id="partner_delete_item_form">
                 <input type="text" name="item_id" class="hidden" value="<?= $item['item_id'] ?>">
                 <button class="float-right hover:cursor-pointer " type="submit" value="">
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" fill="#D0D0D0" width="20" height="20" viewBox="0 0 24 24">
@@ -108,5 +108,45 @@ $items = $q->fetchAll();
       </div>
   </section>
 </div>
-<script src="../js/item.js"></script>
+
+<?php global $nonce;
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/item.js"></script>
+
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('partner_add_item_form').addEventListener('submit', function() {
+      validate(add_item);
+      return false
+    });
+  </script>
+
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('partner_update_item_form').addEventListener('submit', function() {
+      validate(update_item);
+      return false
+    });
+  </script>
+
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('itemSelect').addEventListener('change', function() {
+      load_item()
+    });
+  </script>
+
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('partner_hide_item_form').addEventListener('submit', function() {
+      private_item(event);
+      return false;
+    });
+  </script>
+
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('partner_hide_item_form').addEventListener('submit', function() {
+      private_item(event);
+      return false;
+    });
+  </script>
+
+<?php endif; ?>
+
 <?php require_once __DIR__ . '/_footer.php'  ?>

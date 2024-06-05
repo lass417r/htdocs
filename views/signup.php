@@ -9,7 +9,7 @@ require_once __DIR__ . '/_header.php';
       <h1>Welcome</h1>
       <p>Sign up with email</p>
     </div>
-    <form onsubmit="validate(signup); return false" class="flex flex-col gap-4 ">
+    <form id="user_signup_form" class="flex flex-col gap-4 ">
       <div class="grid">
         <label for="user_name" class="flex">
           <span class="font-bold hidden text-sexyred">name</span>
@@ -54,12 +54,19 @@ require_once __DIR__ . '/_header.php';
     </form>
   </div>
 
-
   <a class="mt-8" href="/login">Already have an account? <span class="text-sexyred">Login</span></a>
 
 </section>
 
 
-
+<?php global $nonce;
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('user_signup_form').addEventListener('submit', function() {
+      validate(signup);
+      return false
+    });
+  </script>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/_footer.php'  ?>

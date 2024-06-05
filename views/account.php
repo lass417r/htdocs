@@ -70,7 +70,7 @@ $_SESSION['user_id'] = $user['user_id'];
         <div class="pb-4">
           <h2 class="font-extrabold ">Update profile</h2>
         </div>
-        <form class="flex flex-col gap-2" onsubmit="validate(update_user); return false">
+        <form id="update_user_form" class="flex flex-col gap-2">
           <input name="user_id" value="<?= $user['user_id'] ?>" class="hidden"></input>
           <label class="flex flex-col" for="user_name">Name:
             <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_name" name="user_name" value="<?= $user['user_name'] ?>" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>"> </label>
@@ -89,11 +89,11 @@ $_SESSION['user_id'] = $user['user_id'];
           <input class=" text-center gap-4 bg-soft-white px-4 py-3 rounded-2xl text-mr-grey" type="submit" value="Update profile">
         </form>
       </div>
-      <div id="update_account" class="flex flex-col p-4  bg-50-shades rounded-md text-soft-white">
+      <div id="update_account_form" class="flex flex-col p-4  bg-50-shades rounded-md text-soft-white">
         <div class="pb-4">
           <h2 class="font-extrabold ">Update password</h2>
         </div>
-        <form class="flex flex-col gap-2" onsubmit="validate(update_user_password); return false">
+        <form id="update_password" class="flex flex-col gap-2">
           <label class="flex flex-col" for="user_old_password">Old password:
             <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_old_password" name="user_old_password" placeholder="Old password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
           </label>
@@ -117,7 +117,7 @@ $_SESSION['user_id'] = $user['user_id'];
           <p>
             If you temporarily deactivate your account, your profile and information will be hidden until you reactivate it by logging back in. </p>
         </div>
-        <form onsubmit=" if(confirm('You are about to temporarily deactivate your account from our system. Do you want to continue?')) {window.location.href='/logout' ;} return false;">
+        <form id="deactivate_account_form">
           <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
           <button class=" mt-6 font-bold flex items-center">
             <span class="material-symbols-outlined mr-2">
@@ -135,7 +135,7 @@ $_SESSION['user_id'] = $user['user_id'];
             This action is irreversible and will permanently remove your account from our system.
             Please proceed with caution.</p>
         </div>
-        <form onsubmit=" if(confirm('You are about to permanently remove your account from our system. Do you want to continue?')) { delete_user(); setTimeout(function(){ location.reload(); }, 1000); } return false;">
+        <form id="delete_account_form">
           <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
           <button class="text-red-500 mt-6 font-bold flex items-center">
             <span class="material-symbols-outlined mr-2">
@@ -151,7 +151,37 @@ $_SESSION['user_id'] = $user['user_id'];
 
   </div>
 </section>
+<?php global $nonce;
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('update_user_form').addEventListener('submit', function() {
+      validate(update_user);
+      return false
+    });
 
+    document.getElementById('update_password_form').addEventListener('submit', function() {
+      validate(update_user_password);
+      return false
+    });
+
+    document.getElementById('deactivate_account_form').addEventListener('submit', function() {
+      if (confirm('You are about to temporarily deactivate your account from our system. Do you want to continue?')) {
+        window.location.href = '/logout';
+      }
+      return false;
+    });
+
+    document.getElementById('delete_account_form').addEventListener('submit', function() {
+      if (confirm('You are about to permanently remove your account from our system. Do you want to continue?')) {
+        delete_user();
+        setTimeout(function() {
+          location.reload();
+        }, 1000);
+      }
+      return false;
+    });
+  </script>
+<?php endif; ?>
 <?php
 require_once __DIR__ . '/_footer.php';
 ?>

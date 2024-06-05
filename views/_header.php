@@ -33,15 +33,8 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$n
 
       <div class="flex gap-4">
         <div id="open_menu" class="flex items-center">
-          <svg class="open_icon" width="20" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 2L21 2" stroke="white" stroke-width="2" stroke-linecap="round" />
-            <path d="M1 18L21 18" stroke="white" stroke-width="2" stroke-linecap="round" />
-            <path d="M1 10L21 10" stroke="white" stroke-width="2" stroke-linecap="round" />
-          </svg>
-          <svg class="close_icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L17.92 17.92" stroke="white" stroke-width="2" stroke-linecap="round" />
-            <path d="M2.08008 18L18.0001 2.07998" stroke="white" stroke-width="2" stroke-linecap="round" />
-          </svg>
+          <img class="open_icon" src="../assets/svgs/menu.svg" alt="Menu icon">
+          <img class="close_icon" src="../assets/svgs/close.svg" alt="Close menu icon">
         </div>
       </div>
       <div>
@@ -62,17 +55,13 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$n
       </div>
       <div class="flex justify-end gap-6">
         <a href="/browse" class="flex items-center">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.2818 14.2731L21 21M16.5556 8.77778C16.5556 13.0733 13.0733 16.5556 8.77778 16.5556C4.48223 16.5556 1 13.0733 1 8.77778C1 4.48223 4.48223 1 8.77778 1C13.0733 1 16.5556 4.48223 16.5556 8.77778Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <img src="../assets/svgs/search.svg" alt="Account icon">
         </a>
         <a href="/account" class="flex items-center">
           <?php if ($profilePictureUrl) : ?>
             <img src="<?= htmlspecialchars($profilePictureUrl) ?>" alt="Profile Picture" class="w-8 h-8 object-cover rounded-full">
           <?php else : ?>
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.66675 21V19.8235C1.66675 16.5748 4.30037 13.9412 7.5491 13.9412H12.255C15.5037 13.9412 18.1373 16.5748 18.1373 19.8235V21M14.6079 5.70588C14.6079 8.30487 12.501 10.4118 9.90204 10.4118C7.30305 10.4118 5.19616 8.30487 5.19616 5.70588C5.19616 3.10689 7.30305 1 9.90204 1C12.501 1 14.6079 3.10689 14.6079 5.70588Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <img src="../assets/svgs/account.svg" alt="Account icon">
           <?php endif; ?>
         </a>
       </div>
@@ -115,38 +104,24 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$n
       if (!isset($_SESSION['user']) || !$_SESSION['user']) : ?>
         <a href=/login class="flex justify-between items-center bg-mr-grey p-4 rounded-2xl">
           <div class="flex items-center gap-4">
-            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.33325 17V16.0588C1.33325 13.4599 3.44015 11.3529 6.03913 11.3529H9.80384C12.4028 11.3529 14.5097 13.4599 14.5097 16.0588V17M11.6862 4.76471C11.6862 6.8439 10.0006 8.52941 7.92149 8.52941C5.8423 8.52941 4.15678 6.8439 4.15678 4.76471C4.15678 2.68552 5.8423 1 7.92149 1C10.0006 1 11.6862 2.68552 11.6862 4.76471Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <img src="../assets/svgs/login.svg" alt="Login icon">
             Login
           </div>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 1L12 8L5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
         </a>
       <?php else : ?>
         <div class="flex flex-col gap-4">
           <a href=/account class="flex justify-between items-center bg-mr-grey p-4 rounded-2xl">
             <div class="flex items-center gap-4">
-              <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.33325 17V16.0588C1.33325 13.4599 3.44015 11.3529 6.03913 11.3529H9.80384C12.4028 11.3529 14.5097 13.4599 14.5097 16.0588V17M11.6862 4.76471C11.6862 6.8439 10.0006 8.52941 7.92149 8.52941C5.8423 8.52941 4.15678 6.8439 4.15678 4.76471C4.15678 2.68552 5.8423 1 7.92149 1C10.0006 1 11.6862 2.68552 11.6862 4.76471Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <img src="../assets/svgs/account.svg" alt="Account icon">
               Account
             </div>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 1L12 8L5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <img src="../assets/svgs/arrow.svg" alt="Arrow icon">
           </a>
           <a href=/logout class="flex justify-between items-center bg-mr-grey p-4 rounded-2xl">
             <div class="flex items-center gap-4">
-              <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.33325 17V16.0588C1.33325 13.4599 3.44015 11.3529 6.03913 11.3529H9.80384C12.4028 11.3529 14.5097 13.4599 14.5097 16.0588V17M11.6862 4.76471C11.6862 6.8439 10.0006 8.52941 7.92149 8.52941C5.8423 8.52941 4.15678 6.8439 4.15678 4.76471C4.15678 2.68552 5.8423 1 7.92149 1C10.0006 1 11.6862 2.68552 11.6862 4.76471Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <img src="../assets/svgs/logout.svg" alt="Logout icon">
               Logout
             </div>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 1L12 8L5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
           </a>
         </div>
       <?php endif ?>

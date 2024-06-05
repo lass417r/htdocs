@@ -8,3 +8,4 @@ require_once __DIR__ . '/seed_orders.php';
 require_once __DIR__ . '/seed_orders_items.php';
 require_once __DIR__ . '/seed_employees.php';
 require_once __DIR__ . '/seed_comments.php';
+require_once __DIR__ . '/seed_login_attempts.php';

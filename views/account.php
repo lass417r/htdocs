@@ -52,9 +52,7 @@ $_SESSION['user_id'] = $user['user_id'];
               <img id="currentProfilePicture" src="<?= htmlspecialchars($profilePictureUrl) ?>" alt="Profile Picture" class="w-32 h-32 object-cover rounded-full">
               <button id="removeProfilePicture" class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 w-8 h-8 flex items-center justify-center">X</button>
             <?php else : ?>
-              <svg id="currentProfilePicture" width="128" height="128" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-32 h-32 rounded-full bg-gray-200 p-2">
-                <path d="M1.66675 21V19.8235C1.66675 16.5748 4.30037 13.9412 7.5491 13.9412H12.255C15.5037 13.9412 18.1373 16.5748 18.1373 19.8235V21M14.6079 5.70588C14.6079 8.30487 12.501 10.4118 9.90204 10.4118C7.30305 10.4118 5.19616 8.30487 5.19616 5.70588C5.19616 3.10689 7.30305 1 9.90204 1C12.501 1 14.6079 3.10689 14.6079 5.70588Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <img src="../assets/svgs/account.svg" alt="Account icon">
             <?php endif; ?>
           </div>
           <form class="flex flex-col gap-2" id="profilePictureForm" enctype="multipart/form-data">

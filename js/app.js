@@ -120,7 +120,7 @@ async function login() {
   const data = await conn.json();
 
   if (!conn.ok) {
-    document.querySelector("#login_error").innerText = "Invalid credentials";
+    document.querySelector("#login_error").innerText = data.info || "Invalid credentials";
     return;
   }
 

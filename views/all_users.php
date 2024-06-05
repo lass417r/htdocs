@@ -24,12 +24,13 @@ require_once __DIR__ . '/_header.php';
       </h1>
 
     </div>
-    <div class="grid grid-cols-[auto_1fr_1fr_1fr] md:grid-cols-[auto_1fr_1fr_1fr_2fr_1fr] items-center gap-4 border-b border-b-slate-200 py-2">
+    <div class="grid grid-cols-[auto_1fr_1fr_1fr] md:grid-cols-[auto_1fr_1fr_1fr_2fr_1fr_1fr] items-center gap-4 border-b border-b-slate-200 py-2">
       <div class="w-8 rounded-full"></div>
       <div class="cursor-pointer" id="sort_name">Name <span id="direction"></span></div>
       <div class="cursor-pointer" id="sort_last_name">Last name <span id="direction"></span></div>
       <div class="cursor-pointer" id="sort_role">Role <span id="direction"></span></div>
       <div class="cursor-pointer hidden md:block" id="sort_email" class="hidden md:block">Email <span id="direction"></span></div>
+      <div class="cursor-pointer hidden md:block" id="sort_id" class="hidden md:block">User ID <span id="direction"></span></div>
       <div class="cursor-pointer text-right hidden md:block" id="sort_status" class="hidden md:block text-right">Status <span id="direction"></span></div>
     </div>
     <div id="results"></div>

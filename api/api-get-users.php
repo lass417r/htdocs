@@ -1,22 +1,22 @@
 <?php
 header('Content-Type: application/json');
-require_once __DIR__.'/../_.php';
-try{
+require_once __DIR__ . '/../_.php';
+try {
 
   $db = _db();
-  $q = $db->prepare('SELECT * FROM users LIMIT :page, 2');
-  $q->bindValue(':page', $_GET['page'], PDO::PARAM_INT );
+  $q = $db->prepare('SELECT * FROM users');
   $q->execute();
   $users = $q->fetchAll();
   echo json_encode($users);
-
-}catch(Exception $e){
-  try{
-    if( ! $e->getCode() || ! $e->getMessage()){ throw new Exception(); }
+} catch (Exception $e) {
+  try {
+    if (!$e->getCode() || !$e->getMessage()) {
+      throw new Exception();
+    }
     http_response_code($e->getCode());
-    echo json_encode(['info'=>$e->getMessage()]);
-  }catch(Exception $ex){
+    echo json_encode(['info' => $e->getMessage()]);
+  } catch (Exception $ex) {
     http_response_code(500);
-    echo json_encode($ex); 
+    echo json_encode($ex);
   }
 }

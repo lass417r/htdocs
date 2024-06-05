@@ -115,15 +115,14 @@ $_SESSION['user_id'] = $user['user_id'];
           <p>
             If you temporarily deactivate your account, your profile and information will be hidden until you reactivate it by logging back in. </p>
         </div>
-        <form id="deactivate_account_form">
-          <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
-          <button class=" mt-6 font-bold flex items-center">
+        <div>
+          <button id="deactivate_account_button" class=" mt-6 font-bold flex items-center">
             <span class="material-symbols-outlined mr-2">
               hourglass_top
             </span>
             TEMPORARILY DEACTIVATE ACCOUNT
           </button>
-        </form>
+        </div>
       </div>
 
       <div id="delete" class="flex  flex-col  p-4  bg-50-shades rounded-md text-soft-white">
@@ -181,11 +180,8 @@ if (isset($nonce)) : ?>
         return false
       });
 
-      document.getElementById('deactivate_account_form').addEventListener('submit', function() {
-        if (confirm('You are about to temporarily deactivate your account from our system. Do you want to continue?')) {
-          window.location.href = '/logout';
-        }
-        return false;
+      document.getElementById('deactivate_account_button').addEventListener('click', function() {
+        window.location.href = '/logout';
       });
 
       document.getElementById('delete_account_form').addEventListener('submit', function() {

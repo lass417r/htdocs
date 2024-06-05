@@ -28,7 +28,9 @@ try {
       user_updated_at   TEXT,
       user_deleted_at   TEXT,
       user_is_blocked   int,
-      user_image	      varchar(255),
+      profile_picture	  varchar(255),
+      login_attempts    int(11) DEFAULT 0,
+      lockout_time      datetime DEFAULT NULL,
       PRIMARY KEY (user_id),
       UNIQUE (user_email(255))
     )

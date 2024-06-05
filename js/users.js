@@ -12,6 +12,7 @@ async function getUsers() {
 document.querySelector("#sort_name").addEventListener("click", sortName);
 document.querySelector("#sort_last_name").addEventListener("click", sortLastName);
 document.querySelector("#sort_email").addEventListener("click", sortEmail);
+document.querySelector("#sort_id").addEventListener("click", sortID);
 document.querySelector("#sort_role").addEventListener("click", sortRole);
 document.querySelector("#sort_status").addEventListener("click", sortStatus);
 document.querySelector("#frm_search").addEventListener("input", handleSearch);
@@ -70,6 +71,20 @@ async function sortEmail() {
   displayUsers(users);
 }
 
+let sortIDDirection = -1;
+async function sortID() {
+  document.querySelectorAll("#direction").forEach((el) => {
+    el.innerHTML = "";
+  });
+  this.querySelector("#direction").innerHTML = sortIDDirection == 1 ? "▲" : "▼";
+  const users = await getUsers();
+  users.sort((a, b) => {
+    return a.user_email.localeCompare(b.user_id) * sortIDDirection;
+  });
+  sortIDDirection *= -1;
+  displayUsers(users);
+}
+
 let sortRoleDirection = -1;
 async function sortRole() {
   document.querySelectorAll("#direction").forEach((el) => {
@@ -117,15 +132,16 @@ function displayUsers(users) {
     let div_user = `
       <a href="user/${
         user.user_id
-      }" class="grid grid-cols-[auto_1fr_1fr_1fr] items-center md:grid-cols-[auto_1fr_1fr_1fr_2fr_1fr] gap-4 border-b border-b-slate-200 py-2">
+      }" class="grid grid-cols-[auto_1fr_1fr_1fr] md:grid-cols-[auto_1fr_1fr_1fr_2fr_1fr_1fr] items-center  gap-4 border-b border-b-slate-200 py-2">
         <div class="hidden">${user.user_id}</div>
         ${profilePicture}
         <div>${user.user_name}</div>
         <div>${user.user_last_name}</div>
         <div>${user.user_role_name}</div>
         <div class="hidden md:block">${user.user_email}</div>
+        <div class="hidden md:block">${user.user_id}</div>
         <button class="text-right hidden md:block">
-          ${user.user_is_blocked == 0 ? "unblocked" : "blocked"}
+          ${user.user_is_blocked == 0 ? "Not blocked" : "Blocked"}
         </button>
       </a>
     `;

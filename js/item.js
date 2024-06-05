@@ -80,33 +80,28 @@ async function delete_item() {
     });
 }
 
+// ##############################
+
 document.addEventListener("DOMContentLoaded", function () {
-  const forms = document.querySelectorAll('form[onsubmit="private_item(event); return false;"]');
+  const forms = document.querySelectorAll(".partner_hide_item_form");
 
   forms.forEach((form) => {
     const item_id = form.querySelector('input[name="item_id"]').value;
     const private_status = form.querySelector('input[name="private_status"]').value;
 
-    const button = form.querySelector("button");
-    const eyeIcon = document.createElement("span");
-    const eyeSlashIcon = document.createElement("span");
+    const visibleIcon = form.querySelector(`#visibleIcon-${item_id}`);
+    const hiddenIcon = form.querySelector(`#hiddenIcon-${item_id}`);
 
-    eyeIcon.className = "material-symbols-outlined";
-    eyeIcon.id = `eyeIcon-${item_id}`;
-    eyeIcon.textContent = "visibility";
-
-    eyeSlashIcon.className = "material-symbols-outlined";
-    eyeSlashIcon.id = `eyeSlashIcon-${item_id}`;
-    eyeSlashIcon.textContent = "visibility_off";
-
+    // Initially set visibility based on private_status
     if (private_status == 1) {
-      eyeIcon.style.display = "none";
+      visibleIcon.classList.add("hidden");
+      hiddenIcon.classList.remove("hidden");
     } else {
-      eyeSlashIcon.style.display = "none";
+      visibleIcon.classList.remove("hidden");
+      hiddenIcon.classList.add("hidden");
     }
 
-    button.appendChild(eyeIcon);
-    button.appendChild(eyeSlashIcon);
+    form.addEventListener("submit", private_item);
   });
 });
 
@@ -131,14 +126,14 @@ async function private_item(event) {
       frm.querySelector('input[name="private_status"]').value = newStatus;
 
       // Toggle icons immediately
-      const eyeIcon = document.getElementById(`eyeIcon-${item_id}`);
-      const eyeSlashIcon = document.getElementById(`eyeSlashIcon-${item_id}`);
+      const visibleIcon = document.getElementById(`visibleIcon-${item_id}`);
+      const hiddenIcon = document.getElementById(`hiddenIcon-${item_id}`);
       if (newStatus == 1) {
-        eyeIcon.style.display = "none";
-        eyeSlashIcon.style.display = "inline";
+        visibleIcon.classList.add("hidden");
+        hiddenIcon.classList.remove("hidden");
       } else {
-        eyeIcon.style.display = "inline";
-        eyeSlashIcon.style.display = "none";
+        visibleIcon.classList.remove("hidden");
+        hiddenIcon.classList.add("hidden");
       }
     } else {
       console.error("HTTP error:", response.status);

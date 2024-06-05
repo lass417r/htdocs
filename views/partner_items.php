@@ -87,11 +87,12 @@ $items = $q->fetchAll();
             <p class="text-lg"><?= $item['item_name'] ?></p>
             <p class="text-lg"><?= $item['item_price'] ?></p>
             <div id="options" class="flex align-between justify-end gap-2">
-              <form id="partner_hide_item_form">
+              <form class="partner_hide_item_form">
                 <input type="text" name="item_id" class="hidden" value="<?= $item['item_id'] ?>">
                 <input type="hidden" name="private_status" value="<?= $item['item_private'] ? 0 : 1 ?>">
                 <button id="toggleButton-<?= $item['item_id'] ?>" class="float-right hover:cursor-pointer" type="submit">
-                  <img src="../assets/svgs/visible_eye.svg" alt="Delete icon">
+                  <img id="visibleIcon-<?= $item['item_id'] ?>" src="../assets/svgs/visible_eye.svg" alt="Visible icon" class="icon <?= $item['item_private'] ? 'hidden' : 'visible' ?>">
+                  <img id="hiddenIcon-<?= $item['item_id'] ?>" src="../assets/svgs/hidden_eye.svg" alt="Hidden icon" class="icon <?= $item['item_private'] ? 'visible' : 'hidden' ?>">
                 </button>
               </form>
               <form id="partner_delete_item_form">

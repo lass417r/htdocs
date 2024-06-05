@@ -40,3 +40,15 @@ input:-webkit-autofill:active {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: inline;
+}
+.icon {
+  width: 24px; /* Set a fixed width */
+  height: 24px; /* Set a fixed height */
+  vertical-align: middle; /* Ensure vertical alignment */
+}

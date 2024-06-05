@@ -21,7 +21,7 @@ require_once __DIR__ . '/_header.php';
 
 <section class=" gap-4 p-6 container mx-auto ">
   <div class="pb-5">
-    <button class="text-left flex gap-2" onclick="goBack()">
+    <button id="goBackButton" class="text-left flex gap-2">
       <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#D0D0D0" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 299.021 299.021" xml:space="preserve">
         <g>
           <path d="M292.866,254.432c-2.288,0-4.443-1.285-5.5-3.399c-0.354-0.684-28.541-52.949-146.169-54.727v51.977    c0,2.342-1.333,4.48-3.432,5.513c-2.096,1.033-4.594,0.793-6.461-0.63L2.417,154.392C0.898,153.227,0,151.425,0,149.516    c0-1.919,0.898-3.72,2.417-4.888l128.893-98.77c1.87-1.426,4.365-1.667,6.461-0.639c2.099,1.026,3.432,3.173,3.432,5.509v54.776    c3.111-0.198,7.164-0.37,11.947-0.37c43.861,0,145.871,13.952,145.871,143.136c0,2.858-1.964,5.344-4.75,5.993    C293.802,254.384,293.34,254.432,292.866,254.432z" />
@@ -80,7 +80,7 @@ require_once __DIR__ . '/_header.php';
         <div class="pb-4">
           <h2 class="font-extrabold ">Update profile</h2>
         </div>
-        <form class="flex flex-col gap-4" onsubmit="validate(update_user); return false">
+        <form class="flex flex-col gap-4" id="update_user_form_admin">
           <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
           <label class="flex flex-col" for="user_name">Name:
             <input class="pl-2" type="text" id="user_name" name="user_name" value="<?= $user['user_name'] ?>" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>">
@@ -115,7 +115,7 @@ require_once __DIR__ . '/_header.php';
           <span class="material-symbols-outlined mr-2">
             BLOCK
           </span>
-          <button class="font-bold flex items-center" onclick="toggle_blocked('<?= $user['user_id']; ?>', '<?= $user['user_is_blocked']; ?>')">
+          <button class="font-bold flex items-center" id="admin_block_user">
             <?= $user['user_is_blocked'] == 0 ? "USER NOT BLOCKED" : "USER BLOCKED"; ?>
           </button>
         </div>
@@ -128,7 +128,7 @@ require_once __DIR__ . '/_header.php';
             This action is irreversible and will permanently remove <?php out($user['user_name']) ?>'s account from our system.
             Please proceed with caution.</p>
         </div>
-        <form onsubmit=" if(confirm('You are about to permanently remove the account from our system. Do you want to continue?')) { admin_delete_user(); setTimeout(function(){ location.reload(); }, 1000); } return false;">
+        <form id="admin_delete_user_form">
           <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
           <button class="text-red-500 mt-6 font-bold flex items-center">
             <span class="material-symbols-outlined mr-2">
@@ -140,6 +140,31 @@ require_once __DIR__ . '/_header.php';
       </div>
     </div>
 </section>
+<?php global $nonce;
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    document.getElementById('update_user_form_admin').addEventListener('submit', function() {
+      validate(update_user);
+      return false
+    });
+
+    document.getElementById('admin_block_user').addEventListener('click', function() {
+      toggle_blocked('<?= $user['user_id']; ?>', '<?= $user['user_is_blocked']; ?>')
+    });
+
+    document.getElementById('admin_delete_user_form').addEventListener('submit', function() {
+      if (confirm('You are about to permanently remove the account from our system. Do you want to continue?')) {
+        admin_delete_user();
+        setTimeout(function() {
+          location.reload();
+        }, 1000);
+      }
+      return false;
+    });
+  </script>
+<?php endif; ?>
+
+
 
 <?php
 require_once __DIR__ . '/_footer.php';

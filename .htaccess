@@ -1,0 +1,40 @@
+RewriteEngine On
+
+#####
+RewriteRule ^app.js$          js/app.js [NC,L]
+RewriteRule ^validator.js$    js/validator.js [NC,L]
+
+
+#####
+RewriteRule ^$                views/index.php [NC,L]
+RewriteRule ^signup$          views/signup.php [NC,L]
+RewriteRule ^login$           views/login.php [NC,L]
+RewriteRule ^users$           views/users.php [NC,L]
+RewriteRule ^user$            views/user.php [NC,L]
+RewriteRule ^admin$           views/admin.php [NC,L]
+RewriteRule ^logout$          views/logout.php [NC,L]
+RewriteRule ^customers$       views/customers.php [NC,L]
+RewriteRule ^employees$       views/employees.php [NC,L]
+RewriteRule ^partners$        views/partners.php [NC,L]
+RewriteRule ^all_users$       views/all_users.php [NC,L]
+RewriteRule ^all_orders$      views/all_orders.php [NC,L]
+RewriteRule ^user_orders$     views/user_orders.php [NC,L]
+RewriteRule ^is_deleted$      views/is_deleted.php [NC,L]
+RewriteRule ^account$         views/account.php [NC,L]
+RewriteRule ^search-results$  views/search_results.php [NC,L]
+RewriteRule ^browse$          views/browse.php [NC,L]
+RewriteRule ^partner_orders$  views/partner_orders.php [NC,L]
+RewriteRule ^partner_items$   views/partner_items.php [NC,L]
+RewriteRule ^partner_signup$  views/partner_signup.php [NC,L]
+RewriteRule ^contact          views/contact.php [NC,L]
+RewriteRule ^about-us         views/about-us.php [NC,L]  
+RewriteRule ^employee_orders  views/employee_orders.php [NC,L]
+
+RewriteRule ^order/([0-9]+)$  views/order.php?id=$1 [NC,L]
+RewriteRule ^user/([0-9]+)$   views/user.php?id=$1 [NC,L]
+
+
+
+
+
+

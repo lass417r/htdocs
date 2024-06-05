@@ -1,0 +1,8 @@
+tailwindcss/node_modules/*
+tailwindcss/package-lock.json
+tailwindcss/package.json
+tailwindcss/tailwindcss.config.js
+tailwindcss/input.css
+
+app.css
+

@@ -201,24 +201,7 @@ async function order_comment_post() {
 // ######################
 // PROFILE PICTURE
 
-document.addEventListener("DOMContentLoaded", function () {
-  const profilePictureElement = document.getElementById("currentProfilePicture");
-  const removeProfilePictureButton = document.getElementById("removeProfilePicture");
-
-  // Check if the profile picture is not the default placeholder
-  if (profilePictureElement.tagName === "IMG" && profilePictureElement.src && !profilePictureElement.src.includes("default-placeholder.png")) {
-    removeProfilePictureButton.style.display = "block";
-  }
-
-  document.getElementById("profilePictureForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    update_user_picture();
-  });
-
-  removeProfilePictureButton.addEventListener("click", function () {
-    remove_user_picture();
-  });
-});
+// profile.js
 
 function update_user_picture() {
   const errorElement = document.getElementById("user_profile_picture_error");

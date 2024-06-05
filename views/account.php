@@ -52,7 +52,7 @@ $_SESSION['user_id'] = $user['user_id'];
               <img id="currentProfilePicture" src="<?= htmlspecialchars($profilePictureUrl) ?>" alt="Profile Picture" class="w-32 h-32 object-cover rounded-full">
               <button id="removeProfilePicture" class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 w-8 h-8 flex items-center justify-center">X</button>
             <?php else : ?>
-              <img src="../assets/svgs/account.svg" alt="Account icon">
+              <img src="../assets/svgs/account.svg" alt="Account icon" class="w-32 h-32 object-cover rounded-full">
             <?php endif; ?>
           </div>
           <form class="flex flex-col gap-2" id="profilePictureForm" enctype="multipart/form-data">
@@ -152,31 +152,53 @@ $_SESSION['user_id'] = $user['user_id'];
 <?php global $nonce;
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
-    document.getElementById('update_user_form').addEventListener('submit', function() {
-      validate(update_user);
-      return false
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const profilePictureElement = document.getElementById('currentProfilePicture');
+      const removeProfilePictureButton = document.getElementById('removeProfilePicture');
 
-    document.getElementById('update_password_form').addEventListener('submit', function() {
-      validate(update_user_password);
-      return false
-    });
-
-    document.getElementById('deactivate_account_form').addEventListener('submit', function() {
-      if (confirm('You are about to temporarily deactivate your account from our system. Do you want to continue?')) {
-        window.location.href = '/logout';
+      // Check if the profile picture is not the default placeholder
+      if (profilePictureElement && profilePictureElement.tagName === 'IMG' && profilePictureElement.src && !profilePictureElement.src.includes('default-placeholder.png')) {
+        removeProfilePictureButton.style.display = 'block';
       }
-      return false;
-    });
 
-    document.getElementById('delete_account_form').addEventListener('submit', function() {
-      if (confirm('You are about to permanently remove your account from our system. Do you want to continue?')) {
-        delete_user();
-        setTimeout(function() {
-          location.reload();
-        }, 1000);
-      }
-      return false;
+      document.getElementById('profilePictureForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        update_user_picture();
+      });
+
+      document.getElementById('removeProfilePicture').addEventListener('click', function() {
+        remove_user_picture();
+      });
+
+
+      document.getElementById('update_user_form').addEventListener('submit', function() {
+        validate(update_user);
+        return false
+      });
+
+      document.getElementById('update_password_form').addEventListener('submit', function() {
+        validate(update_user_password);
+        return false
+      });
+
+      document.getElementById('deactivate_account_form').addEventListener('submit', function() {
+        if (confirm('You are about to temporarily deactivate your account from our system. Do you want to continue?')) {
+          window.location.href = '/logout';
+        }
+        return false;
+      });
+
+      document.getElementById('delete_account_form').addEventListener('submit', function() {
+        if (confirm('You are about to permanently remove your account from our system. Do you want to continue?')) {
+          delete_user();
+          setTimeout(function() {
+            location.reload();
+          }, 1000);
+        }
+        return false;
+      });
+
+
     });
   </script>
 <?php endif; ?>

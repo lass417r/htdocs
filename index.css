@@ -48,7 +48,18 @@ input:-webkit-autofill:active {
   display: inline;
 }
 .icon {
-  width: 24px; /* Set a fixed width */
-  height: 24px; /* Set a fixed height */
-  vertical-align: middle; /* Ensure vertical alignment */
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.profile-placeholder {
+  width: 2rem; /* Equivalent to w-8 */
+  height: 2rem; /* Equivalent to h-8 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Equivalent to text-white */
+  font-size: 0.875rem; /* Equivalent to text-sm */
+  border-radius: 9999px; /* Equivalent to rounded-full */
 }

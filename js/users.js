@@ -97,15 +97,20 @@ async function sortStatus() {
   sortStatusDirection *= -1;
   displayUsers(users);
 }
-
 function displayUsers(users) {
+  const nonce = window.getNonce();
+  const styleTag = document.createElement("style");
+  styleTag.setAttribute("nonce", nonce);
+  document.head.appendChild(styleTag);
+  const styles = [];
+
   document.querySelector("#results").innerHTML = "";
   users.forEach((user) => {
-    // Check if the user has a profile picture URL
+    const userClass = `user-${user.user_id}`;
     let profilePicture =
       user.profile_picture && user.profile_picture !== "/path/to/default-placeholder.png"
         ? `<img src="${user.profile_picture}" alt="Profile Picture" class="w-8 h-8 object-cover rounded-full">`
-        : `<div class="w-8 h-8 flex items-center justify-center text-white text-sm rounded-full" style="background-color: ${user.user_tag_color};">
+        : `<div class="w-8 h-8 flex items-center justify-center text-white text-sm rounded-full ${userClass}">
             ${user.user_name[0]}
           </div>`;
 
@@ -125,7 +130,12 @@ function displayUsers(users) {
       </a>
     `;
     document.querySelector("#results").insertAdjacentHTML("afterbegin", div_user);
+
+    if (!user.profile_picture || user.profile_picture === "/path/to/default-placeholder.png") {
+      styles.push(`.${userClass} { background-color: ${user.user_tag_color}; }`);
+    }
   });
+
   if (users.length == 0) {
     document.querySelector("#results").innerHTML = `
       <div class="flex items-center gap-4 border-b border-b-slate-200 py-2">
@@ -134,6 +144,8 @@ function displayUsers(users) {
       </div>
     `;
   }
+
+  styleTag.innerHTML = styles.join(" ");
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

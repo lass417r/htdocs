@@ -4,9 +4,15 @@ require_once __DIR__ . '/../_.php';
 $profilePictureUrl = isset($_SESSION['user']['profile_picture']) && !empty($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : null;
 
 // Generate a unique nonce for this request
+// $nonce = base64_encode(random_bytes(16));
+// $GLOBALS['nonce'] = $nonce;
+// header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$nonce'; object-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
+
+// Generate a unique nonce for this request + nonce to style-src
 $nonce = base64_encode(random_bytes(16));
 $GLOBALS['nonce'] = $nonce;
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$nonce'; object-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$nonce'; object-src 'none'; style-src 'self' 'nonce-$nonce' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
+
 
 ?>
 

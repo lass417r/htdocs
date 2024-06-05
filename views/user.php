@@ -22,7 +22,7 @@ require_once __DIR__ . '/_header.php';
 <section class=" gap-4 p-6 container mx-auto ">
   <div class="pb-5">
     <button id="goBackButton" class="text-left flex gap-2">
-      <img src="../assets/svgs/arrow_back.svg" alt="Account icon">
+      <img src="../assets/svgs/arrow_back_white.svg" alt="Account icon">
       Go Back
     </button>
   </div>

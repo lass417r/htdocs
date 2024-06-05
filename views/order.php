@@ -63,8 +63,8 @@ require_once __DIR__ . '/_header.php';
 
 <section class=" container mx-auto p-6 ">
     <div class="pb-5">
-        <button id="goBackButton" class="text-left flex gap-2">
-            <img src="../assets/svgs/arrow_back.svg" alt="Account icon">
+        <button id="goBackButton" class="text-left flex gap-2 text-soft-white">
+            <img src="../assets/svgs/arrow_back_white.svg" alt="Account icon">
             Go Back
         </button>
     </div>
@@ -95,7 +95,7 @@ require_once __DIR__ . '/_header.php';
     </div>
 </section>
 
-<secion id="comment_section" class="container mx-auto p-6">
+<secion id="comment_section" class="container mx-auto p-6 text-soft-white">
     <div id="comments" class="mb-4">
         <?php if (count($comments) == 0) : ?>
             <p><small>No comments yet</small></p>

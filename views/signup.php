@@ -30,7 +30,7 @@ require_once __DIR__ . '/_header.php';
         <label id="msg_email_not_available" for="user_email" class="flex opacity-0">
           <span class="ml-auto mr-2 text-xs">Email is not available</span>
         </label>
-        <input name="user_email" type="text" placeholder="Email" onblur="is_email_available()" onfocus='document.querySelector("#msg_email_not_available").classList.add("opacity-0")' data-validate="email">
+        <input id="userEmail" name="user_email" type="text" placeholder="Email" data-validate="email">
 
       </div>
 
@@ -62,6 +62,13 @@ require_once __DIR__ . '/_header.php';
 <?php global $nonce;
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    const msg_email_not_available = document.querySelector("#msg_email_not_available");
+    document.getElementById('userEmail').addEventListener('focus', function() {
+      msg_email_not_available.classList.add("opacity-0");
+    });
+    document.getElementById('userEmail').addEventListener('blur', function() {
+      is_email_available();
+    });
     document.getElementById('user_signup_form').addEventListener('submit', function() {
       validate(signup);
       return false

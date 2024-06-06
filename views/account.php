@@ -91,7 +91,7 @@ $_SESSION['user_id'] = $user['user_id'];
         <div class="pb-4">
           <h2 class="font-extrabold ">Update password</h2>
         </div>
-        <form id="update_password" class="flex flex-col gap-2">
+        <form id="update_password_form" class="flex flex-col gap-2">
           <label class="flex flex-col" for="user_old_password">Old password:
             <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_old_password" name="user_old_password" placeholder="Old password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
           </label>
@@ -165,11 +165,6 @@ if (isset($nonce)) : ?>
         update_user_picture();
       });
 
-      document.getElementById('removeProfilePicture').addEventListener('click', function() {
-        remove_user_picture();
-      });
-
-
       document.getElementById('update_user_form').addEventListener('submit', function() {
         validate(update_user);
         return false
@@ -194,6 +189,9 @@ if (isset($nonce)) : ?>
         return false;
       });
 
+      document.getElementById('removeProfilePicture').addEventListener('click', function() {
+        remove_user_picture();
+      });
 
     });
   </script>

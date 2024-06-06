@@ -11,7 +11,7 @@ require_once __DIR__ . '/_header.php';
     </div>
 </div>
 <div class="px-5 container mx-auto grid md:grid-cols-2 gap-4">
-    <form action="" id="contactForm" class="text-mr-grey flex flex-col gap-4">
+    <form id="contactForm" class="text-mr-grey flex flex-col gap-4">
         <h2 class="uppercase pl-2 text-white">Send us a message</h2>
         <label for="name" class="flex gap-4 items-center px-4 py-3 bg-soft-white rounded-2xl">
             <img src="../assets/svgs/person.svg" alt="Account icon" class="w-6 h-6 object-cover rounded-full">
@@ -63,9 +63,6 @@ if (isset($nonce)) : ?>
         document.getElementById('contactForm').addEventListener('submit', function() {
             return false
         });
-        document.querySelector('contactForm').onsubmit = function() {
-            return false;
-        };
     </script>
 <?php endif; ?>
 <?php require_once __DIR__ . '/_footer.php'; ?>

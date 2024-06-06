@@ -30,12 +30,13 @@ async function is_email_available() {
 
 // ##############################
 async function delete_user() {
+  event.preventDefault();
   const frm = event.target;
   const conn = await fetch("/api/api-delete-user.php", {
     method: "POST",
     body: new FormData(frm),
   });
-  const response = await conn.json();
+  //const response = await conn.json();
   // frm.parentElement.remove();
 }
 
@@ -79,6 +80,7 @@ function toogle_menu() {
 // ########################################
 
 async function signup() {
+  event.preventDefault();
   const frm = event.target;
   const conn = await fetch("/api/api-signup.php", {
     method: "POST",
@@ -93,6 +95,7 @@ async function signup() {
 }
 
 async function partner_signup() {
+  event.preventDefault();
   const frm = event.target;
   const conn = await fetch("/api/api-partner-signup.php", {
     method: "POST",

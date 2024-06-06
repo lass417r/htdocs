@@ -133,6 +133,9 @@ if (isset($nonce)) : ?>
         document.getElementById('commentForm').addEventListener('submit', function() {
             validate(order_comment_post);
         });
+        document.getElementById('goBackButton').addEventListener('click', function() {
+            window.history.back();
+        });
     </script>
 <?php endif; ?>
 

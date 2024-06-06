@@ -78,7 +78,7 @@ try {
   http_response_code(500);
   echo json_encode(['error' => $pdoe->getMessage()]);
 } catch (Exception $e) {
-  if ($db->inTransaction()) {
+  if ($db && $db->inTransaction()) {
     $db->rollBack(); // Roll back the transaction in case of error
   }
   http_response_code($e->getCode() ?: 500);

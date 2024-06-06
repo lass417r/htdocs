@@ -157,6 +157,9 @@ if (isset($nonce)) : ?>
       }
       return false;
     });
+    document.getElementById('goBackButton').addEventListener('click', function() {
+      window.history.back();
+    });
   </script>
 <?php endif; ?>
 

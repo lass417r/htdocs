@@ -26,7 +26,7 @@ if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
     document.getElementById('user_login_form').addEventListener('submit', function() {
       validate(login);
-      return false
+      return false;
     });
   </script>
 <?php endif; ?>

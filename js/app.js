@@ -79,6 +79,7 @@ function toogle_menu() {
 // ########################################
 
 async function signup() {
+  event.preventDefault();
   const frm = event.target;
   const conn = await fetch("/api/api-signup.php", {
     method: "POST",
@@ -93,6 +94,7 @@ async function signup() {
 }
 
 async function partner_signup() {
+  event.preventDefault();
   const frm = event.target;
   const conn = await fetch("/api/api-partner-signup.php", {
     method: "POST",

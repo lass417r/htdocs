@@ -72,15 +72,15 @@ require_once __DIR__ . '/_header.php';
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
     const msg_email_not_available = document.querySelector("#msg_email_not_available");
-    document.getElementById('partner_signup_form').addEventListener('submit', function() {
-      validate(partner_signup);
-      return false;
+    document.getElementById('userEmail').addEventListener('focus', function() {
+      msg_email_not_available.classList.add("opacity-0");
     });
     document.getElementById('userEmail').addEventListener('blur', function() {
       is_email_available();
     });
-    document.getElementById('userEmail').addEventListener('focus', function() {
-      msg_email_not_available.classList.add("opacity-0");
+    document.getElementById('partner_signup_form').addEventListener('submit', function() {
+      validate(partner_signup);
+      return false;
     });
   </script>
 <?php endif; ?>

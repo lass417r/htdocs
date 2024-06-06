@@ -10,8 +10,8 @@ function _db()
   try {
     // Database connection parameters
     $user_name = "root";
-    $user_password = "root";
-    $db_connection = "mysql:host=localhost;dbname=company;charset=utf8mb4";
+    $user_password = "";
+    $db_connection = "mysql:host=localhost;dbname=company_websec;charset=utf8mb4";
 
     // PDO options to ensure secure and consistent behavior
     $db_options = array(

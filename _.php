@@ -5,6 +5,7 @@ session_start(); // Start a new or resume the existing session
 
 // ##############################
 // Function to establish a database connection using PDO
+
 function _db()
 {
   try {

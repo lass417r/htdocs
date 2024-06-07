@@ -13,17 +13,17 @@ require_once __DIR__ . '/_header.php';
       <div class="grid">
         <label for="user_name" class="flex">
           <span class="font-bold hidden text-sexyred">name</span>
-          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_NAME_MIN ?> to <?= USER_NAME_MAX ?> characters</span>
+          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_NAME_MIN) ?> to <?= out(USER_NAME_MAX) ?> characters</span>
         </label>
-        <input id="user_name" placeholder="First name" name="user_name" type="text" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>">
+        <input id="user_name" placeholder="First name" name="user_name" type="text" data-validate="str" data-min="<?= out(USER_NAME_MIN) ?>" data-max="<?= out(USER_NAME_MAX) ?>">
       </div>
 
       <div class="grid">
         <label for="user_last_name" class="flex">
           <span class="font-bold hidden text-sexyred">last name</span>
-          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_LAST_NAME_MIN ?> to <?= USER_LAST_NAME_MAX ?> characters</span>
+          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_LAST_NAME_MIN) ?> to <?= out(USER_LAST_NAME_MAX) ?> characters</span>
         </label>
-        <input id="user_last_name" name="user_last_name" placeholder="Last name" type="text" data-validate="str" data-min="<?= USER_LAST_NAME_MIN ?>" data-max="<?= USER_LAST_NAME_MAX ?>">
+        <input id="user_last_name" name="user_last_name" placeholder="Last name" type="text" data-validate="str" data-min="<?= out(USER_LAST_NAME_MIN) ?>" data-max="<?= out(USER_LAST_NAME_MAX) ?>">
       </div>
 
       <div class="grid">
@@ -36,9 +36,9 @@ require_once __DIR__ . '/_header.php';
 
       <div class="grid" class="flex">
         <label for="user_name" class="flex">
-          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_PASSWORD_MIN ?> to <?= USER_PASSWORD_MAX ?> characters</span>
+          <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_PASSWORD_MIN) ?> to <?= out(USER_PASSWORD_MAX) ?> characters</span>
         </label>
-        <input name="user_password" type="password" placeholder="Password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
+        <input name="user_password" type="password" placeholder="Password" data-validate="str" data-min="<?= out(USER_PASSWORD_MIN) ?>" data-max="<?= out(USER_PASSWORD_MAX) ?>">
       </div>
 
       <div class="grid">
@@ -59,7 +59,7 @@ require_once __DIR__ . '/_header.php';
 </section>
 
 
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
     const msg_email_not_available = document.querySelector("#msg_email_not_available");

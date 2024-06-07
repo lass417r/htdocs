@@ -47,7 +47,7 @@ $items = $q->fetchAll();
             <select id="itemSelect" class="w-full" name="item_id" required data-validate="str" data-min="1" data-max="60">
               <option hidden>Select a product</option>
               <?php foreach ($items as $item) : ?>
-                <option value="<?= $item['item_id'] ?>" data-name="<?= $item['item_name'] ?>"><?= $item['item_name'] ?></option>
+                <option value="<?= out($item['item_id']) ?>" data-name="<?= out($item['item_name']) ?>"><?= out($item['item_name']) ?></option>
               <?php endforeach ?>
             </select>
           </label>
@@ -83,20 +83,20 @@ $items = $q->fetchAll();
         <?php foreach ($items as $item) : ?>
 
           <div class="grid grid-cols-[1fr_2fr_1fr_1fr]  items-center gap-4 border-b border-b-slate-200">
-            <p class="text-lg"><?= $item['item_id'] ?></p>
-            <p class="text-lg"><?= $item['item_name'] ?></p>
-            <p class="text-lg"><?= $item['item_price'] ?></p>
+            <p class="text-lg"><?= out($item['item_id']) ?></p>
+            <p class="text-lg"><?= out($item['item_name']) ?></p>
+            <p class="text-lg"><?= out($item['item_price']) ?></p>
             <div id="options" class="flex align-between justify-end gap-2">
               <form class="partner_hide_item_form">
-                <input type="text" name="item_id" class="hidden" value="<?= $item['item_id'] ?>">
-                <input type="hidden" name="private_status" value="<?= $item['item_private'] ? 0 : 1 ?>">
-                <button id="toggleButton-<?= $item['item_id'] ?>" class="float-right hover:cursor-pointer" type="submit">
-                  <img id="visibleIcon-<?= $item['item_id'] ?>" src="../assets/svgs/visible_eye.svg" alt="Visible icon" class="icon <?= $item['item_private'] ? 'hidden' : 'visible' ?>">
-                  <img id="hiddenIcon-<?= $item['item_id'] ?>" src="../assets/svgs/hidden_eye.svg" alt="Hidden icon" class="icon <?= $item['item_private'] ? 'visible' : 'hidden' ?>">
+                <input type="text" name="item_id" class="hidden" value="<?= out($item['item_id']) ?>">
+                <input type="hidden" name="private_status" value="<?= out($item['item_private']) ? 0 : 1 ?>">
+                <button id="toggleButton-<?= out($item['item_id']) ?>" class="float-right hover:cursor-pointer" type="submit">
+                  <img id="visibleIcon-<?= out($item['item_id']) ?>" src="../assets/svgs/visible_eye.svg" alt="Visible icon" class="icon <?= out($item['item_private']) ? 'hidden' : 'visible' ?>">
+                  <img id="hiddenIcon-<?= out($item['item_id']) ?>" src="../assets/svgs/hidden_eye.svg" alt="Hidden icon" class="icon <?= out($item['item_private']) ? 'visible' : 'hidden' ?>">
                 </button>
               </form>
               <form id="partner_delete_item_form">
-                <input type="text" name="item_id" class="hidden" value="<?= $item['item_id'] ?>">
+                <input type="text" name="item_id" class="hidden" value="<?= out($item['item_id']) ?>">
                 <button class="float-right hover:cursor-pointer " type="submit" value="">
                   <img src="../assets/svgs/delete.svg" alt="Delete icon">
                 </button>
@@ -110,7 +110,7 @@ $items = $q->fetchAll();
   </section>
 </div>
 
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/item.js"></script>
 

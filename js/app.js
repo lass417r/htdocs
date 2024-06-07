@@ -54,9 +54,9 @@ async function admin_delete_user() {
 // ##############################
 async function toggle_blocked(user_id, user_is_blocked) {
   if (user_is_blocked == 0) {
-    event.target.innerHTML = "BLOCKED";
+    event.target.textContent = "BLOCKED";
   } else {
-    event.target.innerHTML = "UNBLOCKED";
+    event.target.textContent = "UNBLOCKED";
   }
   const conn = await fetch(`/api/api-toggle-user-blocked.php?user_id=${user_id}&user_is_blocked=${user_is_blocked}`);
   const data = await conn.text();
@@ -135,7 +135,7 @@ async function login() {
 async function update_user() {
   event.preventDefault();
   const errorElement = document.getElementById("user_error");
-  errorElement.innerHTML = "";
+  errorElement.textContent = "";
   const frm = event.target;
 
   const response = await fetch("/api/api-update-user.php", {
@@ -147,11 +147,11 @@ async function update_user() {
   if (response.ok) {
     location.reload();
   } else {
-    errorElement.innerHTML = data.info;
+    errorElement.textContent = data.info;
     frm.reset();
 
     setTimeout(() => {
-      errorElement.innerHTML = "";
+      errorElement.textContent = "";
     }, 5000);
   }
 }
@@ -161,7 +161,7 @@ async function update_user() {
 async function update_user_password() {
   event.preventDefault();
   const errorElement = document.getElementById("password_error");
-  errorElement.innerHTML = "";
+  errorElement.textContent = "";
   const frm = event.target;
 
   const response = await fetch("/api/api-update-user-password.php", {
@@ -173,11 +173,11 @@ async function update_user_password() {
   if (response.ok) {
     location.reload();
   } else {
-    errorElement.innerHTML = data.info;
+    errorElement.textContent = data.info;
     frm.reset();
 
     setTimeout(() => {
-      errorElement.innerHTML = "";
+      errorElement.textContent = "";
     }, 5000);
   }
 }
@@ -193,6 +193,7 @@ async function order_comment_post() {
     body: new FormData(frm),
   });
   const data = await conn.text();
+  console.log(data);
   if (!conn.ok) {
     return;
   }

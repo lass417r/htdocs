@@ -13,6 +13,7 @@ require_once __DIR__ . '/_header.php';
     <?php
     $frm_search_url = 'api-search-all-orders.php';
     $frm_search_placeholder = 'Search for orders';
+    $frm_search_value = '';
     include_once __DIR__ . '/_form_search.php'
     ?>
   </div>
@@ -32,7 +33,7 @@ require_once __DIR__ . '/_header.php';
     </div>
     <div id="results"></div>
 </section>
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/orders.js"></script>
 <?php endif; ?>

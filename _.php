@@ -33,6 +33,13 @@ function _db()
 define('USER_NAME_MIN', 2);
 define('USER_NAME_MAX', 20);
 
+// ##############################
+// Define minimum and maximum lengths for comment name and comment text
+define('COMMENT_NAME_MIN', 2);
+define('COMMENT_NAME_MAX', 20);
+define('COMMENT_TEXT_MIN', 2);
+define('COMMENT_TEXT_MAX', 140);
+
 // Function to validate user_name
 function _validate_user_name()
 {

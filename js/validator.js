@@ -1,5 +1,6 @@
 // ##############################
 function validate(callback) {
+  event.preventDefault();
   const form = event.target;
   console.log(form);
   form.querySelectorAll("[data-validate]").forEach(function (element) {

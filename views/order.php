@@ -120,6 +120,7 @@ require_once __DIR__ . '/_header.php';
                 <div class="flex flex-col mb-6 [&>label]:mb-2">
                     <input type="text" id="name" name="name" data-validate="str" data-min="<?= out(COMMENT_NAME_MIN) ?>" data-max="<?= out(COMMENT_NAME_MAX) ?>" class="mb-4" placeholder="Full name" />
                     <textarea id="comment" name="comment" data-validate="str" data-min="<?= out(COMMENT_TEXT_MIN) ?>" data-max="<?= out(COMMENT_TEXT_MAX) ?>" class="text-black min-h-36 bg-soft-white py-3 px-4 outline-none rounded-2xl" placeholder="Your comment..."></textarea>
+                    <p><small>Maximum of 140 characters</small></p>
                 </div>
                 <div class="flex w-full">
                     <input type="hidden" name="fk_order_id" value="<?= out($order['order_id']) ?>" />

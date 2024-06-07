@@ -10,7 +10,7 @@ function rate_limit_by_ip($ip)
   $result = $q->fetch();
 
   if ($result['attempts'] >= 10 && strtotime($result['last_attempt']) > strtotime('-1 hour')) {
-    throw new Exception('Too many login attempts from this IP address. Please try again later.', 429);
+    throw new Exception('Please try again later.', 400);
   }
 
   $q = $db->prepare('INSERT INTO login_attempts (ip_address, user_login_email, attempt_time) VALUES (:ip, :user_login_email, NOW())');
@@ -22,7 +22,7 @@ function rate_limit_by_ip($ip)
 function rate_limit_by_user($user)
 {
   if ($user['lockout_time'] && strtotime($user['lockout_time']) > time()) {
-    throw new Exception('Too many login attempts for this user. Please try again later.', 403);
+    throw new Exception('Please try again later.', 400);
   }
 }
 
@@ -40,7 +40,7 @@ try {
   $user = $q->fetch();
 
   if (!$user || !isset($user)) {
-    throw new Exception('Invalid credentials', 400);
+    throw new Exception('Please try again later.', 400);
   }
 
   rate_limit_by_user($user);
@@ -69,7 +69,7 @@ try {
       $q->bindValue(':user_email', $_POST['user_email']);
       $q->execute();
     }
-    throw new Exception('Invalid password', 400);
+    throw new Exception('Invalid credentials', 400);
   }
 
   // Reset login attempts on successful login

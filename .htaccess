@@ -33,8 +33,53 @@ RewriteRule ^employee_orders  views/employee_orders.php [NC,L]
 RewriteRule ^order/([0-9]+)$  views/order.php?id=$1 [NC,L]
 RewriteRule ^user/([0-9]+)$   views/user.php?id=$1 [NC,L]
 
+# PHP Settings
+php_flag display_errors off
+php_value error_reporting "E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED"
+php_value date.timezone "UTC"
 
+# Memory and File Limits
+php_value memory_limit 128M
+php_value upload_max_filesize 20M
+php_value post_max_size 20M
+php_value max_execution_time 60
 
+# Security
+php_flag expose_php off
+php_flag allow_url_fopen off
+php_flag allow_url_include off
+php_value disable_functions "exec,system,shell_exec,passthru,popen,proc_open,phpinfo"
 
+# Session Settings
+php_flag session.cookie_secure on
+php_flag session.cookie_httponly on
+php_flag session.use_only_cookies on
+php_value session.gc_maxlifetime 1440
+php_value session.gc_probability 1
+php_value session.gc_divisor 100
 
+# Error Logging
+php_flag log_errors on
+php_value error_log "/Applications/MAMP/htdocs/logs/php_errors.log"
 
+# OPcache Settings
+php_flag opcache.enable on
+php_flag opcache.enable_cli on
+php_value opcache.memory_consumption 128
+php_value opcache.interned_strings_buffer 8
+php_value opcache.max_accelerated_files 10000
+php_value opcache.validate_timestamps 1
+
+# File Uploads
+php_flag file_uploads on
+php_value upload_tmp_dir "/Applications/MAMP/htdocs/tmp"
+
+# Additional Security Settings
+php_flag register_globals off
+php_value cgi.fix_pathinfo 0
+
+# Data Handling
+php_value always_populate_raw_post_data -1
+
+# Input Variables
+php_value max_input_vars 1000

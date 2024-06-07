@@ -60,7 +60,6 @@ php_value session.gc_divisor 100
 
 # Error Logging
 php_flag log_errors on
-php_value error_log "/Applications/MAMP/htdocs/logs/php_errors.log"
 
 # OPcache Settings
 php_flag opcache.enable on
@@ -72,7 +71,6 @@ php_value opcache.validate_timestamps 1
 
 # File Uploads
 php_flag file_uploads on
-php_value upload_tmp_dir "/Applications/MAMP/htdocs/tmp"
 
 # Additional Security Settings
 php_flag register_globals off

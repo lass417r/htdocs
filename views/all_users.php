@@ -13,6 +13,7 @@ require_once __DIR__ . '/_header.php';
     <?php
     $frm_search_url = 'api-search-all-users.php';
     $frm_search_placeholder = 'Search for users';
+    $frm_search_value = '';
     include_once __DIR__ . '/_form_search.php'
     ?>
   </div>
@@ -37,16 +38,18 @@ require_once __DIR__ . '/_header.php';
 
   </div>
 </section>
-<?php global $nonce; ?>
-<script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
-  (function() {
-    const nonce = "<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>";
-    window.getNonce = function() {
-      return nonce;
-    };
-  })();
-</script>
-<script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/users.js"></script>
 <?php
-require_once __DIR__ . '/_footer.php';
-?>
+if (isset($nonce)) : ?>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/users.js"></script>
+  <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
+    (function() {
+      const nonce = "<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>";
+      window.getNonce = function() {
+        return nonce;
+      };
+    })();
+  </script>
+<?php endif; ?>
+
+
+<?php require_once __DIR__ . '/_footer.php'; ?>

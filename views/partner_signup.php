@@ -12,16 +12,16 @@ require_once __DIR__ . '/_header.php';
     <form id="partner_signup_form" class="flex flex-col gap-4">
       <div class="grid">
         <h2 class="text-base pb-2 pt-4">Owner information</h2>
-        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_NAME_MIN ?> to <?= USER_NAME_MAX ?> characters</span>
+        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_NAME_MIN) ?> to <?= out(USER_NAME_MAX) ?> characters</span>
         <label for="user_name">
-          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " id="user_name" placeholder="First name" name="user_name" type="text" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>">
+          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " id="user_name" placeholder="First name" name="user_name" type="text" data-validate="str" data-min="<?= out(USER_NAME_MIN) ?>" data-max="<?= out(USER_NAME_MAX) ?>">
         </label>
       </div>
 
       <div class="grid">
-        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_LAST_NAME_MIN ?> to <?= USER_LAST_NAME_MAX ?> characters</span>
+        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_LAST_NAME_MIN) ?> to <?= out(USER_LAST_NAME_MAX) ?> characters</span>
         <label for="user_last_name">
-          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " id="user_last_name" name="user_last_name" placeholder="Last name" type="text" data-validate="str" data-min="<?= USER_LAST_NAME_MIN ?>" data-max="<?= USER_LAST_NAME_MAX ?>">
+          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " id="user_last_name" name="user_last_name" placeholder="Last name" type="text" data-validate="str" data-min="<?= out(USER_LAST_NAME_MIN) ?>" data-max="<?= out(USER_LAST_NAME_MAX) ?>">
         </label>
       </div>
 
@@ -43,9 +43,9 @@ require_once __DIR__ . '/_header.php';
 
       <div class="grid">
         <h2 class="text-base pb-2 pt-4">Restaurant password</h2>
-        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= USER_PASSWORD_MIN ?> to <?= USER_PASSWORD_MAX ?> characters</span>
+        <span class="ml-auto pb-0.5 mr-2 text-xs"><?= out(USER_PASSWORD_MIN) ?> to <?= out(USER_PASSWORD_MAX) ?> characters</span>
         <label for="user_password">
-          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " name="user_password" type="password" placeholder="Password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
+          <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none w-full " name="user_password" type="password" placeholder="Password" data-validate="str" data-min="<?= out(USER_PASSWORD_MIN) ?>" data-max="<?= out(USER_PASSWORD_MAX) ?>">
         </label>
       </div>
 
@@ -68,7 +68,7 @@ require_once __DIR__ . '/_header.php';
   <a class="mt-8" href="/login">Already have an account? <span class="text-sexyred">Login</span></a>
 </section>
 
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
     const msg_email_not_available = document.querySelector("#msg_email_not_available");

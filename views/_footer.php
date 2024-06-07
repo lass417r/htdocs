@@ -50,7 +50,7 @@
     </div>
 </footer>
 
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
     <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/app.js"></script>
     <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>" src="../js/validator.js"></script>

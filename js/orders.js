@@ -23,7 +23,7 @@ async function handleSearch() {
   clearTimeout(timer_search_orders);
   timer_search_orders = setTimeout(async function () {
     document.querySelectorAll("#direction").forEach((el) => {
-      el.innerHTML = "";
+      el.textContent = "";
     });
     const orders = await getOrders();
     displayorders(orders);
@@ -33,9 +33,9 @@ async function handleSearch() {
 let sortCreatedAtDirection = -1;
 async function sortCreatedAt() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortCreatedAtDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortCreatedAtDirection == 1 ? "▲" : "▼";
   const orders = await getOrders();
   orders.sort((a, b) => {
     return (a.order_created_at - b.order_created_at) * sortCreatedAtDirection;
@@ -47,9 +47,9 @@ async function sortCreatedAt() {
 let sortIdDirection = -1;
 async function sortId() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortIdDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortIdDirection == 1 ? "▲" : "▼";
   const orders = await getOrders();
   orders.sort((a, b) => {
     return (Number(a.order_id) - Number(b.order_id)) * sortIdDirection;
@@ -61,9 +61,9 @@ async function sortId() {
 let sortCreatedByDirection = -1;
 async function sortCreatedBy() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortCreatedByDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortCreatedByDirection == 1 ? "▲" : "▼";
   const orders = await getOrders();
   orders.sort((a, b) => {
     return (
@@ -78,9 +78,9 @@ async function sortCreatedBy() {
 let sortDeliveredDirection = -1;
 async function sortDelivered() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortDeliveredDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortDeliveredDirection == 1 ? "▲" : "▼";
   const orders = await getOrders();
   orders.sort((a, b) => {
     return (a.order_delivered_at - b.order_delivered_at) * sortDeliveredDirection;
@@ -92,9 +92,9 @@ async function sortDelivered() {
 let sortDeliveredByDirection = -1;
 async function sortDeliveredBy() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortDeliveredByDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortDeliveredByDirection == 1 ? "▲" : "▼";
   const orders = await getOrders();
   orders.sort((a, b) => {
     return (
@@ -107,7 +107,7 @@ async function sortDeliveredBy() {
 }
 
 function displayorders(orders) {
-  document.querySelector("#results").innerHTML = "";
+  document.querySelector("#results").textContent = "";
   orders.forEach((order) => {
     let div_order = `
     <a href="order/${

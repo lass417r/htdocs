@@ -3,14 +3,8 @@ require_once __DIR__ . '/../_.php';
 // Initialize the profile picture from the SESSION
 $profilePictureUrl = isset($_SESSION['user']['profile_picture']) && !empty($_SESSION['user']['profile_picture']) ? $_SESSION['user']['profile_picture'] : null;
 
-// Generate a unique nonce for this request
-// $nonce = base64_encode(random_bytes(16));
-// $GLOBALS['nonce'] = $nonce;
-// header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$nonce'; object-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
-
 // Generate a unique nonce for this request + nonce to style-src
 $nonce = base64_encode(random_bytes(16));
-$GLOBALS['nonce'] = $nonce;
 header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$nonce'; object-src 'none'; style-src 'self' 'nonce-$nonce' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
 
 
@@ -65,7 +59,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-$n
         </a>
         <a href="/account" class="flex items-center">
           <?php if ($profilePictureUrl) : ?>
-            <img src="<?= htmlspecialchars($profilePictureUrl) ?>" alt="Profile Picture" class="w-8 h-8 object-cover rounded-full">
+            <img src="<?= out($profilePictureUrl) ?>" alt="Profile Picture" class="w-8 h-8 object-cover rounded-full">
           <?php else : ?>
             <img src="../assets/svgs/account.svg" alt="Account icon">
           <?php endif; ?>

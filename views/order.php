@@ -70,9 +70,9 @@ require_once __DIR__ . '/_header.php';
     </div>
     <div class="flex flex-col gap-4 p-4  bg-50-shades rounded-md text-soft-white">
         <div class="flex flex-col items-start gap-4  border-b-slate-200">
-            <h3 class="pt-2 text-soft-white font-bold">Order <?= $order_id ?></h3>
+            <h3 class="pt-2 text-soft-white font-bold">Order <?= out($order_id) ?></h3>
             <h4>Order details:</h4>
-            <div class="">Order created: <?php echo date("d/m/Y H.i", $order['order_created_at']) ?></div>
+            <div class="">Order created: <?php echo out(date("d/m/Y H.i", $order['order_created_at'])) ?></div>
             <div class="">Order ID: <?php out($order['order_id']) ?></div>
             <div class="">Order delivered: <?php out($order['order_delivered_at']) ?></div>
             <div class="">Order delivered by: <?php out($order['order_delivered_by_user_fk']) ?></div>
@@ -83,7 +83,7 @@ require_once __DIR__ . '/_header.php';
                 $totalPrice += $item['orders_items_total_price'];
             }
             ?>
-            <div>Total price: <?php echo $totalPrice; ?></div>
+            <div>Total price: <?php echo out($totalPrice); ?></div>
         </div>
         <hr>
         <div class=" flex flex-col items-start gap-2">
@@ -103,20 +103,23 @@ require_once __DIR__ . '/_header.php';
             <h3 class="my-4 font-bold">Comments</h3>
         <?php endif; ?>
         <?php foreach (array_reverse($comments) as $comment) : ?> <!-- Reverse the order of comments (latest first) -->
+
             <div class="comment flex flex-col p-4 mb-4 bg-50-shades rounded-md text-soft-white">
                 <p><strong><?= out($comment['name']); ?>:</strong> <?= out($comment['comment']); ?></p> <!-- Output the comment with htmlspecialchars -->
                 <p class="place-self-end opacity-65"><small><?= out(date("d/m/Y H.i", strtotime($comment['created_at']))); ?></small></p>
             </div>
+
         <?php endforeach; ?>
     </div>
+
     <hr>
     <div>
         <h3 class="my-4 font-bold">Want to add a comment?</h3>
         <form id="commentForm" method="POST">
             <div>
                 <div class="flex flex-col mb-6 [&>label]:mb-2">
-                    <input type="text" id="name" name="name" data-validate="str" data-min="2" data-max="20" class="mb-4" placeholder="Full name" />
-                    <textarea id="comment" name="comment" data-validate="str" data-min="2" data-max="140" class="text-black min-h-36 bg-soft-white py-3 px-4 outline-none rounded-2xl" placeholder="Your comment..."></textarea>
+                    <input type="text" id="name" name="name" data-validate="str" data-min="<?= out(COMMENT_NAME_MIN) ?>" data-max="<?= out(COMMENT_NAME_MAX) ?>" class="mb-4" placeholder="Full name" />
+                    <textarea id="comment" name="comment" data-validate="str" data-min="<?= out(COMMENT_TEXT_MIN) ?>" data-max="<?= out(COMMENT_TEXT_MAX) ?>" class="text-black min-h-36 bg-soft-white py-3 px-4 outline-none rounded-2xl" placeholder="Your comment..."></textarea>
                 </div>
                 <div class="flex w-full">
                     <input type="hidden" name="fk_order_id" value="<?= out($order['order_id']) ?>" />
@@ -127,7 +130,7 @@ require_once __DIR__ . '/_header.php';
     </div>
 </secion>
 
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
     <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
         document.getElementById('commentForm').addEventListener('submit', function() {

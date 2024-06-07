@@ -22,7 +22,7 @@ async function handleSearch() {
   clearTimeout(timer_search_users);
   timer_search_users = setTimeout(async function () {
     document.querySelectorAll("#direction").forEach((el) => {
-      el.innerHTML = "";
+      el.textContent = "";
     });
     const users = await getUsers();
     displayUsers(users);
@@ -32,9 +32,9 @@ async function handleSearch() {
 let sortNameDirection = -1;
 async function sortName() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortNameDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortNameDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_name.localeCompare(b.user_name) * sortNameDirection;
@@ -46,9 +46,9 @@ async function sortName() {
 let sortLastNameDirection = -1;
 async function sortLastName() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortLastNameDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortLastNameDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_last_name.localeCompare(b.user_last_name) * sortLastNameDirection;
@@ -60,9 +60,9 @@ async function sortLastName() {
 let sortEmailDirection = -1;
 async function sortEmail() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortEmailDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortEmailDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_email.localeCompare(b.user_email) * sortEmailDirection;
@@ -74,9 +74,9 @@ async function sortEmail() {
 let sortIDDirection = -1;
 async function sortID() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortIDDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortIDDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_email.localeCompare(b.user_id) * sortIDDirection;
@@ -88,9 +88,9 @@ async function sortID() {
 let sortRoleDirection = -1;
 async function sortRole() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortRoleDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortRoleDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_role_name.localeCompare(b.user_role_name) * sortRoleDirection;
@@ -102,9 +102,9 @@ async function sortRole() {
 let sortStatusDirection = -1;
 async function sortStatus() {
   document.querySelectorAll("#direction").forEach((el) => {
-    el.innerHTML = "";
+    el.textContent = "";
   });
-  this.querySelector("#direction").innerHTML = sortStatusDirection == 1 ? "▲" : "▼";
+  this.querySelector("#direction").textContent = sortStatusDirection == 1 ? "▲" : "▼";
   const users = await getUsers();
   users.sort((a, b) => {
     return a.user_is_blocked.localeCompare(b.user_is_blocked) * sortStatusDirection;
@@ -119,7 +119,7 @@ function displayUsers(users) {
   document.head.appendChild(styleTag);
   const styles = [];
 
-  document.querySelector("#results").innerHTML = "";
+  document.querySelector("#results").textContent = "";
   users.forEach((user) => {
     const userClass = `user-${user.user_id}`;
     let profilePicture =

@@ -16,6 +16,7 @@ require_once __DIR__ . '/_header.php';
     <?php
     $frm_search_url = 'api-search-employee-orders.php';
     $frm_search_placeholder = 'Search for orders';
+    $frm_search_value = '';
     include_once __DIR__ . '/_form_search.php'
     ?>
   </div>

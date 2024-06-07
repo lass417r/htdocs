@@ -19,7 +19,7 @@ $_SESSION['user_id'] = $user['user_id'];
     <div class="grid md:grid-cols-2 gap-4">
       <div class="flex  gap-2 flex-col p-4 bg-50-shades rounded-md text-soft-white">
         <h2 class="font-extrabold ">Profile</h2>
-        <div class="hidden"><?= $user['user_id'] ?></div>
+        <div class="hidden"><?= out($user['user_id']) ?></div>
         <div class="grid grid-cols-2  ">
           <div>First name: </div>
           <div><?php out($user['user_name']) ?></div>
@@ -38,7 +38,7 @@ $_SESSION['user_id'] = $user['user_id'];
         </div>
         <div class="grid grid-cols-2  ">
           <div>Account created: </div>
-          <div><?php echo date("d/m/Y H.i", $user['user_created_at']) ?></div>
+          <div><?php echo out(date("d/m/Y H.i", $user['user_created_at'])) ?></div>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ $_SESSION['user_id'] = $user['user_id'];
         <div class="grid grid-cols-[1fr_2fr]">
           <div class="relative mx-auto mb-4">
             <?php if ($profilePictureUrl && $profilePictureUrl != '/path/to/default-placeholder.png') : ?>
-              <img id="currentProfilePicture" src="<?= htmlspecialchars($profilePictureUrl) ?>" alt="Profile Picture" class="w-32 h-32 object-cover rounded-full">
+              <img id="currentProfilePicture" src="<?= out($profilePictureUrl) ?>" alt="Profile Picture" class="w-32 h-32 object-cover rounded-full">
               <button id="removeProfilePicture" class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 w-8 h-8 flex items-center justify-center">X</button>
             <?php else : ?>
               <img src="../assets/svgs/account.svg" alt="Account icon" class="w-32 h-32 object-cover rounded-full">
@@ -69,18 +69,18 @@ $_SESSION['user_id'] = $user['user_id'];
           <h2 class="font-extrabold ">Update profile</h2>
         </div>
         <form id="update_user_form" class="flex flex-col gap-2">
-          <input name="user_id" value="<?= $user['user_id'] ?>" class="hidden"></input>
+          <input name="user_id" value="<?= out($user['user_id']) ?>" class="hidden"></input>
           <label class="flex flex-col" for="user_name">Name:
-            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_name" name="user_name" value="<?= $user['user_name'] ?>" data-validate="str" data-min="<?= USER_NAME_MIN ?>" data-max="<?= USER_NAME_MAX ?>"> </label>
+            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_name" name="user_name" value="<?= out($user['user_name']) ?>" data-validate="str" data-min="<?= out(USER_NAME_MIN) ?>" data-max="<?= out(USER_NAME_MAX) ?>"> </label>
           <label class="flex flex-col" for="user_last_name">Last Name:
-            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_last_name" name="user_last_name" value="<?= $user['user_last_name'] ?>" data-validate="str" data-min="<?= USER_LAST_NAME_MIN ?>" data-max="<?= USER_LAST_NAME_MAX ?>">
+            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_last_name" name="user_last_name" value="<?= out($user['user_last_name']) ?>" data-validate="str" data-min="<?= out(USER_LAST_NAME_MIN) ?>" data-max="<?= out(USER_LAST_NAME_MAX) ?>">
           </label>
           <label class="flex flex-col" for="user_email">Email:
-            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_email" name="user_email" value="<?= $user['user_email'] ?>" data-validate="email">
+            <input class=" pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_email" name="user_email" value="<?= out($user['user_email']) ?>" data-validate="email">
           </label>
 
           <label class="flex flex-col" for="user_address">Address:
-            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_address" name="user_address" value="<?= $user['user_address'] ?>">
+            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="text" id="user_address" name="user_address" value="<?= out($user['user_address']) ?>">
           </label>
 
           <div id="user_error" class="text-red-500"></div>
@@ -93,11 +93,11 @@ $_SESSION['user_id'] = $user['user_id'];
         </div>
         <form id="update_password_form" class="flex flex-col gap-2">
           <label class="flex flex-col" for="user_old_password">Old password:
-            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_old_password" name="user_old_password" placeholder="Old password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
+            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_old_password" name="user_old_password" placeholder="Old password" data-validate="str" data-min="<?= out(USER_PASSWORD_MIN) ?>" data-max="<?= out(USER_PASSWORD_MAX) ?>">
           </label>
 
           <label class="flex flex-col" for="user_password">Password:
-            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_password" name="user_password" placeholder="Password" data-validate="str" data-min="<?= USER_PASSWORD_MIN ?>" data-max="<?= USER_PASSWORD_MAX ?>">
+            <input class="pl-2 bg-transparent placeholder:text-transparent-50 focus:outline-none" type="password" id="user_password" name="user_password" placeholder="Password" data-validate="str" data-min="<?= out(USER_PASSWORD_MIN) ?>" data-max="<?= out(USER_PASSWORD_MAX) ?>">
           </label>
 
           <label class="flex flex-col" for="user_confirm_password">Confirm password:
@@ -133,7 +133,7 @@ $_SESSION['user_id'] = $user['user_id'];
             Please proceed with caution.</p>
         </div>
         <form id="delete_account_form">
-          <input class="hidden" name="user_id" type="text" value="<?= $user['user_id'] ?>">
+          <input class="hidden" name="user_id" type="text" value="<?= out($user['user_id']) ?>">
           <button class="text-red-500 mt-6 font-bold flex items-center">
             <span class="material-symbols-outlined mr-2">
               delete
@@ -148,7 +148,7 @@ $_SESSION['user_id'] = $user['user_id'];
 
   </div>
 </section>
-<?php global $nonce;
+<?php
 if (isset($nonce)) : ?>
   <script nonce="<?= htmlspecialchars($nonce, ENT_QUOTES, 'UTF-8') ?>">
     document.addEventListener('DOMContentLoaded', function() {

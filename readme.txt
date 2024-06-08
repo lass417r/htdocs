@@ -1,3 +1,9 @@
+******* XAMPP/MAMP *******
+Install XAMPP or MAMP
+Place htdocs folder in XAMPP/MAMP folder
+Start the services (Apache and MySQL) in XAMPP/MAMP
+Hit 127.0.0.1
+
 ******* SEED DATABASE *******
 To seed database go to localhost/seeders/seed_database.php
 

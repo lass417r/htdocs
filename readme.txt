@@ -9,6 +9,12 @@ To seed database go to localhost/seeders/seed_database.php
 
 Otherwise import sql file included
 
+Once database is seeded, you can login with:
+u: admin@company.com    p: password
+u: partner@company.com  p: password
+u: employee@company.com p: password
+u: customer@company.com p: password
+
 ******* RUN TAILWINDCSS *******
 Remember to install and run tailwindcss:
 cd into the tailwindcss folder and run:
